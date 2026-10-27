@@ -16,9 +16,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://weave-decision-explorer.vercel.app"),
   title: "Weave Decision Explorer",
   description:
     "Unofficial Routing Decision Explorer for Weave Router — see why each model was picked.",
+  openGraph: {
+    title: "Why did the router pick that model?",
+    description:
+      "Unofficial read-only Routing Decision Explorer for Weave Router.",
+  },
 };
 
 export default function RootLayout({
@@ -32,8 +38,19 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
       >
         <StoreProvider>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-3 focus:py-2 focus:text-white"
+          >
+            Skip to content
+          </a>
           <Header />
-          <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6">{children}</main>
+          <main
+            id="main-content"
+            className="mx-auto w-full max-w-7xl flex-1 px-4 py-6"
+          >
+            {children}
+          </main>
           <Footer />
         </StoreProvider>
       </body>

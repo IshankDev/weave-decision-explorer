@@ -69,16 +69,15 @@ const SESSIONS = [
   },
 ] as const;
 
-const TURN_TYPES = [
-  "main_loop",
-  "tool_result",
-  "compaction",
-  "title_gen",
-  "sub_agent_dispatch",
-  "probe",
-  "recap",
-  "classifier",
-] as const;
+type TurnType =
+  | "main_loop"
+  | "tool_result"
+  | "compaction"
+  | "title_gen"
+  | "sub_agent_dispatch"
+  | "probe"
+  | "recap"
+  | "classifier";
 
 function iso(ms: number): string {
   return new Date(ms).toISOString();
@@ -458,7 +457,7 @@ function buildRows(): Decision[] {
   }
 
   // Non-main_loop turn types
-  const nonMain: Array<(typeof TURN_TYPES)[number]> = [
+  const nonMain: TurnType[] = [
     "tool_result",
     "compaction",
     "title_gen",

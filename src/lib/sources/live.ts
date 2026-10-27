@@ -78,7 +78,7 @@ export async function fetchLiveDecisions(
 
     const url = proxyPath("v1/analytics/routing-decisions", params);
 
-    let res = await fetch(url, {
+    const res = await fetch(url, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${opts.analyticsKey}`,
@@ -90,7 +90,8 @@ export async function fetchLiveDecisions(
 
     if (res.status === 429) {
       const retryAfter = Number(res.headers.get("Retry-After") ?? "5");
-      const waitSec = Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter : 5;
+      const waitSec =
+        Number.isFinite(retryAfter) && retryAfter >= 0 ? retryAfter : 5;
       opts.onProgress?.({
         pages,
         rows: byId.size,

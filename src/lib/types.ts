@@ -34,6 +34,8 @@ export interface AppState {
   selectedId: string | null;
   schemaVersion: string | null;
   pricesAvailable: boolean;
+  /** model → current input/output USD per 1M tokens (from /v1/analytics/models). */
+  priceBook: Map<string, { inputUsdPer1M: number; outputUsdPer1M: number }> | null;
 }
 
 export type AppAction =
@@ -53,4 +55,8 @@ export type AppAction =
   | { type: "SELECT_DECISION"; id: string | null }
   | { type: "SET_SCHEMA_VERSION"; version: string | null }
   | { type: "SET_PRICES_AVAILABLE"; available: boolean }
+  | {
+      type: "SET_PRICE_BOOK";
+      book: Map<string, { inputUsdPer1M: number; outputUsdPer1M: number }> | null;
+    }
   | { type: "CLEAR" };

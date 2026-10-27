@@ -6,9 +6,13 @@ import {
   computeTopPairs,
   computeWhyItMoved,
 } from "@/lib/aggregations";
+import { computeSavingsEstimate } from "@/lib/savings";
 import { useStore } from "@/lib/store/StoreProvider";
 import { DemoBanner } from "./DemoBanner";
+import { FileImport } from "./FileImport";
 import { KpiCards } from "./KpiCards";
+import { LiveSource } from "./LiveSource";
+import { SavingsEstimateCard } from "./SavingsEstimate";
 import { SourceSwitcher } from "./SourceSwitcher";
 import { TopPairs } from "./TopPairs";
 import { WhyItMoved } from "./WhyItMoved";
@@ -16,9 +20,19 @@ import { WhyItMoved } from "./WhyItMoved";
 export function Overview() {
   const { state } = useStore();
 
-  const kpis = useMemo(() => computeKpis(state.decisions), [state.decisions]);
+  const kpis = useMemo(
+    () => computeKpis(state.decisions, state.priceBook),
+    [state.decisions, state.priceBook],
+  );
   const segments = useMemo(() => computeWhyItMoved(state.decisions), [state.decisions]);
   const pairs = useMemo(() => computeTopPairs(state.decisions), [state.decisions]);
+  const savings = useMemo(
+    () =>
+      state.priceBook
+        ? computeSavingsEstimate(state.decisions, state.priceBook)
+        : null,
+    [state.decisions, state.priceBook],
+  );
 
   return (
     <div className="space-y-6">
@@ -39,7 +53,7 @@ export function Overview() {
           Loading decisions…
         </p>
       )}
-      {state.status === "error" && (
+      {state.status === "error" && state.source.kind !== "live" && (
         <p className="rounded-md bg-danger-soft px-3 py-2 text-sm text-danger" role="alert">
           {state.error}
         </p>
@@ -48,10 +62,14 @@ export function Overview() {
       {state.status === "ready" && (
         <>
           <KpiCards kpis={kpis} />
+          {savings && <SavingsEstimateCard estimate={savings} />}
           <WhyItMoved segments={segments} />
           <TopPairs pairs={pairs} />
         </>
       )}
+
+      <FileImport />
+      <LiveSource />
     </div>
   );
 }

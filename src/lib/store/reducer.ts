@@ -17,6 +17,7 @@ export function createInitialState(): AppState {
     selectedId: null,
     schemaVersion: null,
     pricesAvailable: false,
+    priceBook: null,
   };
 }
 
@@ -102,6 +103,12 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return { ...state, schemaVersion: action.version };
     case "SET_PRICES_AVAILABLE":
       return { ...state, pricesAvailable: action.available };
+    case "SET_PRICE_BOOK":
+      return {
+        ...state,
+        priceBook: action.book,
+        pricesAvailable: action.book != null && action.book.size > 0,
+      };
     case "CLEAR":
       return {
         ...createInitialState(),

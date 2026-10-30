@@ -8,7 +8,7 @@ Unofficial, standalone **Routing Decision Explorer** for [Weave Router](https://
 The Weave dashboard drill-down shows requested/decision model, tokens, cost, and latency — but not `decision_reason`, `candidate_models`, `chosen_score`, `sticky_hit`, or `failover_used`. The analytics export is raw NDJSON meant for a warehouse: *"There is no dashboard in the loop."* This app fills that gap.
 
 **Live demo:** [weave-decision-explorer.vercel.app](https://weave-decision-explorer.vercel.app)  
-**Screenshot / GIF:** _placeholder — add after first deploy_
+**Repo:** [IshankDev/weave-decision-explorer](https://github.com/IshankDev/weave-decision-explorer)
 
 ## What this does
 
@@ -79,9 +79,9 @@ No secrets are required. Never commit `.env*` except `.env.example`.
 
 ## Vercel deploy
 
-1. `git init && git add -A && git commit` (already done in this repo), create GitHub repo `ishank-labs/weave-decision-explorer`, push.
-2. vercel.com → Add New → Project → import. Framework: Next.js. **Add no environment variables** (none required). Optionally set `NEXT_PUBLIC_DEFAULT_ROUTER_URL`.
-3. Deploy; set domain to `weave-decision-explorer.vercel.app`.
+1. Repo is at [IshankDev/weave-decision-explorer](https://github.com/IshankDev/weave-decision-explorer) (the `ishank-labs` org was unavailable on this GitHub account).
+2. Vercel project `weave-decision-explorer` — Framework Next.js, **no environment variables**. Optionally set `NEXT_PUBLIC_DEFAULT_ROUTER_URL`.
+3. Production alias: `weave-decision-explorer.vercel.app`.
 4. Post-deploy check:
    - Demo mode loads
    - No console errors

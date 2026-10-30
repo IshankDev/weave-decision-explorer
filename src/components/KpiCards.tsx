@@ -5,17 +5,19 @@ import { formatMs, formatNumber, formatPct } from "@/lib/format";
 
 function Card({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
-    <div className="rounded-lg bg-surface p-3 shadow-sm ring-1 ring-border">
-      <div className="text-xs font-medium uppercase tracking-wide text-muted">{label}</div>
-      <div className="mt-1 text-xl font-semibold tabular-nums text-foreground">{value}</div>
-      {hint ? <div className="mt-0.5 text-xs text-muted">{hint}</div> : null}
+    <div className="panel px-3.5 py-3">
+      <div className="eyebrow">{label}</div>
+      <div className="mt-1.5 text-[22px] font-medium tracking-[-0.03em] tabular-nums text-foreground">
+        {value}
+      </div>
+      {hint ? <div className="mt-0.5 text-[11px] text-muted">{hint}</div> : null}
     </div>
   );
 }
 
 export function KpiCards({ kpis }: { kpis: OverviewKpis }) {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       <Card label="Model calls" value={formatNumber(kpis.modelCalls)} />
       <Card label="main_loop turns" value={formatNumber(kpis.mainLoopTurns)} />
       <Card label="Distinct requests" value={formatNumber(kpis.distinctRequests)} />

@@ -55,12 +55,12 @@ export function FileImport() {
   );
 
   return (
-    <section id="source-file" className="space-y-2 rounded-lg bg-surface p-4 ring-1 ring-border">
-      <h2 className="text-lg font-semibold">File import</h2>
-      <p className="text-sm text-muted">
-        Drop a Weave analytics export (<code className="font-mono">.ndjson</code> /{" "}
-        <code className="font-mono">.jsonl</code>). Parsed in the browser; nothing is
-        uploaded.
+    <section id="source-file" className="panel space-y-3 p-4">
+      <h2 className="section-title">File import</h2>
+      <p className="text-[13px] text-muted">
+        Drop a Weave analytics export (<code className="font-mono text-muted-strong">.ndjson</code>{" "}
+        / <code className="font-mono text-muted-strong">.jsonl</code>). Parsed in the browser;
+        nothing is uploaded.
       </p>
       <div
         onDragOver={(e) => {
@@ -73,14 +73,14 @@ export function FileImport() {
           setDragOver(false);
           void handleFile(e.dataTransfer.files[0] ?? null);
         }}
-        className={`flex flex-col items-center justify-center gap-3 rounded-md border-2 border-dashed px-4 py-8 transition ${
+        className={`flex flex-col items-center justify-center gap-3 rounded-[var(--radius)] border border-dashed px-4 py-8 transition ${
           dragOver
-            ? "border-accent bg-accent-soft/40"
-            : "border-border bg-background"
+            ? "border-accent bg-accent-soft"
+            : "border-border-strong bg-surface-muted"
         }`}
       >
-        <p className="text-sm text-muted">Drag & drop, or pick a file</p>
-        <label className="cursor-pointer rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white hover:opacity-90">
+        <p className="text-[13px] text-muted">Drag & drop, or pick a file</p>
+        <label className="btn btn-primary cursor-pointer">
           Choose file
           <input
             type="file"
@@ -91,7 +91,7 @@ export function FileImport() {
         </label>
       </div>
       {message && (
-        <p className="text-sm text-muted" role="status">
+        <p className="text-[13px] text-muted" role="status">
           {message}
         </p>
       )}

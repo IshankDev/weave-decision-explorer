@@ -200,16 +200,16 @@ export function DecisionsTable({
     <div
       ref={parentRef}
       onScroll={onScroll}
-      className="h-[min(70vh,640px)] overflow-auto rounded-lg bg-surface ring-1 ring-border"
+      className="panel h-[min(70vh,640px)] overflow-auto"
       role="region"
       aria-label="Decisions table"
     >
-      <table className="min-w-[960px] w-full border-collapse text-left text-sm">
-        <thead className="sticky top-0 z-10 border-b border-border bg-surface-muted text-xs uppercase tracking-wide text-muted">
+      <table className="min-w-[960px] w-full border-collapse text-left text-[13px]">
+        <thead className="sticky top-0 z-10 border-b border-border bg-surface-muted/95 text-[11px] font-medium uppercase tracking-[0.04em] text-muted backdrop-blur-md">
           {table.getHeaderGroups().map((hg) => (
             <tr key={hg.id}>
               {hg.headers.map((h) => (
-                <th key={h.id} className="px-2 py-2 font-medium whitespace-nowrap">
+                <th key={h.id} className="px-3 py-2.5 font-medium whitespace-nowrap">
                   {flexRender(h.column.columnDef.header, h.getContext())}
                 </th>
               ))}
@@ -237,13 +237,13 @@ export function DecisionsTable({
                     onRowClick(row.id);
                   }
                 }}
-                className={`cursor-pointer border-b border-border/50 hover:bg-accent-soft/40 ${
-                  selected ? "bg-accent-soft/60" : ""
+                className={`cursor-pointer border-b border-border transition-colors ${
+                  selected ? "bg-accent-soft" : "hover:bg-[var(--fill)]"
                 }`}
                 style={{ height: ROW_HEIGHT }}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="px-2 py-1 align-middle">
+                  <td key={cell.id} className="px-3 py-1 align-middle">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}

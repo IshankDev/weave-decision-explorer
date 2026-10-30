@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("demo → filter failover → open drawer → see candidates", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByText("Demo data, synthetic")).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Overview" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Router decisions" })).toBeVisible();
 
   await page.getByRole("link", { name: "Decisions" }).click();
   await expect(page.getByRole("heading", { name: "Decisions" })).toBeVisible();

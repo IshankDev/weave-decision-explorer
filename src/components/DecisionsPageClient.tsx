@@ -61,35 +61,32 @@ export function DecisionsPageClient() {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-start justify-between gap-3">
+      <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Decisions</h1>
-          <p className="mt-1 text-sm text-muted">
+          <h1 className="display-title">Decisions</h1>
+          <p className="mt-2 text-[13px] text-muted">
             {filtered.length.toLocaleString()} of {state.decisions.length.toLocaleString()}{" "}
             rows
             {filters.turnType === "main_loop" ? " · default turn_type=main_loop" : ""}
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
-          <label className="flex items-center gap-2 text-sm text-muted">
+          <label className="flex items-center gap-2 text-[12px] text-muted">
             <input
               type="checkbox"
               checked={includeEmail}
               onChange={(e) => setIncludeEmail(e.target.checked)}
+              className="accent-[var(--accent)]"
             />
             Include user_email in CSV
           </label>
-          <button
-            type="button"
-            onClick={exportCsv}
-            className="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white hover:opacity-90"
-          >
+          <button type="button" onClick={exportCsv} className="btn btn-primary">
             Export CSV
           </button>
           <button
             type="button"
             onClick={() => setFilters(DEFAULT_FILTERS)}
-            className="rounded-md px-3 py-1.5 text-sm font-medium ring-1 ring-border hover:bg-surface-muted"
+            className="btn btn-secondary"
           >
             Reset filters
           </button>

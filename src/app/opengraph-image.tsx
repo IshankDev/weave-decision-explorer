@@ -15,19 +15,62 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: 72,
-          background: "linear-gradient(135deg, #f4f6f8 0%, #d8f3e7 45%, #dbeafe 100%)",
-          color: "#14212b",
-          fontFamily: "ui-sans-serif, system-ui, sans-serif",
+          padding: 80,
+          background: "#141414",
+          color: "#ececec",
+          fontFamily: "Geist, Arial, sans-serif",
         }}
       >
-        <div style={{ fontSize: 28, color: "#0f6e56", fontWeight: 600 }}>
-          Weave Decision Explorer
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            fontSize: 22,
+            color: "#ff6c47",
+            fontWeight: 500,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          <div
+            style={{
+              width: 28,
+              height: 28,
+              borderRadius: 6,
+              background: "#ff6c47",
+              color: "#141414",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 16,
+              fontWeight: 600,
+            }}
+          >
+            ✦
+          </div>
+          Decision Explorer
         </div>
-        <div style={{ marginTop: 24, fontSize: 64, fontWeight: 700, lineHeight: 1.1, maxWidth: 900 }}>
+        <div
+          style={{
+            marginTop: 28,
+            fontSize: 58,
+            fontWeight: 500,
+            lineHeight: 1.08,
+            maxWidth: 920,
+            letterSpacing: "-0.035em",
+          }}
+        >
           Why did the router pick that model?
         </div>
-        <div style={{ marginTop: 28, fontSize: 24, color: "#5b6b76", maxWidth: 800 }}>
+        <div
+          style={{
+            marginTop: 24,
+            fontSize: 20,
+            color: "#a0a0a0",
+            maxWidth: 760,
+            letterSpacing: "-0.015em",
+          }}
+        >
           Unofficial read-only analytics explorer · not affiliated with Weave
         </div>
       </div>

@@ -33,12 +33,12 @@ export function DecisionFiltersBar({
   }
 
   return (
-    <div className="flex flex-col gap-3 rounded-lg bg-surface p-3 ring-1 ring-border">
+    <div className="panel flex flex-col gap-3.5 p-3.5">
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <label className="flex flex-col gap-1 text-xs font-medium text-muted">
+        <label className="flex flex-col gap-1.5 text-[11px] font-medium text-muted">
           Session
           <select
-            className="rounded-md border border-border bg-background px-2 py-1.5 text-sm text-foreground"
+            className="field"
             value={filters.session}
             onChange={(e) => onChange({ ...filters, session: e.target.value })}
           >
@@ -51,10 +51,10 @@ export function DecisionFiltersBar({
           </select>
         </label>
 
-        <label className="flex flex-col gap-1 text-xs font-medium text-muted">
+        <label className="flex flex-col gap-1.5 text-[11px] font-medium text-muted">
           Turn type
           <select
-            className="rounded-md border border-border bg-background px-2 py-1.5 text-sm text-foreground"
+            className="field"
             value={filters.turnType}
             onChange={(e) => onChange({ ...filters, turnType: e.target.value })}
           >
@@ -70,10 +70,10 @@ export function DecisionFiltersBar({
           </select>
         </label>
 
-        <label className="flex flex-col gap-1 text-xs font-medium text-muted">
+        <label className="flex flex-col gap-1.5 text-[11px] font-medium text-muted">
           Model
           <select
-            className="rounded-md border border-border bg-background px-2 py-1.5 text-sm text-foreground"
+            className="field"
             value={filters.model}
             onChange={(e) => onChange({ ...filters, model: e.target.value })}
           >
@@ -86,10 +86,10 @@ export function DecisionFiltersBar({
           </select>
         </label>
 
-        <label className="flex flex-col gap-1 text-xs font-medium text-muted">
+        <label className="flex flex-col gap-1.5 text-[11px] font-medium text-muted">
           Error class
           <select
-            className="rounded-md border border-border bg-background px-2 py-1.5 text-sm text-foreground"
+            className="field"
             value={filters.errorClass}
             onChange={(e) => onChange({ ...filters, errorClass: e.target.value })}
           >
@@ -104,11 +104,11 @@ export function DecisionFiltersBar({
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        <label className="flex flex-col gap-1 text-xs font-medium text-muted">
+        <label className="flex flex-col gap-1.5 text-[11px] font-medium text-muted">
           Since (requested_at)
           <input
             type="datetime-local"
-            className="rounded-md border border-border bg-background px-2 py-1.5 text-sm text-foreground"
+            className="field"
             value={filters.since.slice(0, 16)}
             onChange={(e) =>
               onChange({
@@ -118,11 +118,11 @@ export function DecisionFiltersBar({
             }
           />
         </label>
-        <label className="flex flex-col gap-1 text-xs font-medium text-muted">
+        <label className="flex flex-col gap-1.5 text-[11px] font-medium text-muted">
           Until (exclusive)
           <input
             type="datetime-local"
-            className="rounded-md border border-border bg-background px-2 py-1.5 text-sm text-foreground"
+            className="field"
             value={filters.until.slice(0, 16)}
             onChange={(e) =>
               onChange({
@@ -132,9 +132,9 @@ export function DecisionFiltersBar({
             }
           />
         </label>
-        <fieldset className="flex flex-col gap-1">
-          <legend className="text-xs font-medium text-muted">Badges</legend>
-          <div className="flex flex-wrap gap-2 pt-1">
+        <fieldset className="flex flex-col gap-1.5">
+          <legend className="text-[11px] font-medium text-muted">Badges</legend>
+          <div className="segmented flex-wrap">
             {BADGE_OPTIONS.map((b) => {
               const active = filters.badges.includes(b.id);
               return (
@@ -143,11 +143,7 @@ export function DecisionFiltersBar({
                   type="button"
                   aria-pressed={active}
                   onClick={() => toggleBadge(b.id)}
-                  className={`rounded-md px-2 py-1 text-xs font-medium ring-1 transition ${
-                    active
-                      ? "bg-accent text-white ring-accent"
-                      : "bg-background text-foreground ring-border hover:bg-surface-muted"
-                  }`}
+                  className={`segmented-item ${active ? "is-active" : ""}`}
                 >
                   {b.label}
                 </button>

@@ -9,7 +9,7 @@ export function DemoBanner() {
   return (
     <div
       role="status"
-      className="mb-4 rounded-md border border-banner-border bg-banner px-3 py-2 text-sm text-warn"
+      className="rounded-[var(--radius)] border border-banner-border bg-banner px-3.5 py-2.5 text-[13px] text-accent"
     >
       Demo data, synthetic — not live router traffic.
     </div>

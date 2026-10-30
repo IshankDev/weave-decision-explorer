@@ -1,22 +1,42 @@
 @import "tailwindcss";
 
+/*
+  Theme matched to Weave Router product UI (router.weaveos.com, 2026-10-30):
+  dark charcoal surfaces, Geist, coral brand action (#ff6c47 / #ec6341).
+  No Weave logo — unofficial demo only.
+*/
 :root {
-  --background: #f4f6f8;
-  --foreground: #14212b;
-  --surface: #ffffff;
-  --surface-muted: #e8eef2;
-  --border: #c9d4dc;
-  --accent: #0f6e56;
-  --accent-soft: #d8f3e7;
-  --warn: #9a3412;
-  --warn-soft: #ffedd5;
-  --danger: #9f1239;
-  --danger-soft: #ffe4e6;
-  --sticky: #1d4ed8;
-  --sticky-soft: #dbeafe;
-  --muted: #5b6b76;
-  --banner: #fff7ed;
-  --banner-border: #fdba74;
+  --background: #141414;
+  --foreground: #ececec;
+  --surface: #212121;
+  --surface-muted: #1a1a1a;
+  --surface-raised: #2a2a2a;
+  --border: #2a2a2a;
+  --border-strong: #3a3a3a;
+  --accent: #ff6c47;
+  --accent-hover: #ff825f;
+  --accent-deep: #ec6341;
+  --accent-soft: rgba(236, 99, 65, 0.14);
+  --accent-glow: rgba(236, 99, 65, 0.13);
+  --warn: #ffb86a;
+  --warn-soft: rgba(255, 184, 106, 0.14);
+  --danger: #ef4444;
+  --danger-soft: rgba(239, 68, 68, 0.14);
+  --sticky: #7c9cff;
+  --sticky-soft: rgba(124, 156, 255, 0.16);
+  --success: #34d399;
+  --success-soft: rgba(52, 211, 153, 0.14);
+  --muted: #a0a0a0;
+  --muted-strong: #c8bbb7;
+  --banner: rgba(255, 108, 71, 0.1);
+  --banner-border: rgba(236, 99, 65, 0.4);
+  --fill: rgba(255, 255, 255, 0.04);
+  --fill-strong: rgba(255, 255, 255, 0.08);
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-sheet: -12px 0 48px rgba(0, 0, 0, 0.55);
+  --radius: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
 }
 
 @theme inline {
@@ -34,22 +54,200 @@
   --color-sticky: var(--sticky);
   --color-sticky-soft: var(--sticky-soft);
   --color-muted: var(--muted);
+  --color-muted-strong: var(--muted-strong);
   --color-banner: var(--banner);
   --color-banner-border: var(--banner-border);
+  --color-border-strong: var(--border-strong);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
   background:
-    radial-gradient(circle at 12% -10%, #d8f3e7 0%, transparent 42%),
-    radial-gradient(circle at 88% 0%, #dbeafe 0%, transparent 38%),
+    radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-glow), transparent 55%),
     var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), ui-sans-serif, sans-serif;
+  font-family: var(--font-geist-sans), Geist, Arial, sans-serif;
+  letter-spacing: -0.011em;
+  line-height: 1.5;
   min-height: 100vh;
 }
 
 * {
   border-color: var(--border);
+}
+
+::selection {
+  background: rgba(255, 108, 71, 0.35);
+  color: #fff;
+}
+
+.display-title {
+  font-size: clamp(1.625rem, 2.2vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--foreground);
+}
+
+.section-title {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--foreground);
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.panel-inset {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.chrome {
+  background: rgba(20, 20, 20, 0.86);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: var(--radius);
+  padding: 0.5rem 0.9rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: background-color 120ms ease, border-color 120ms ease, opacity 120ms ease;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #141414;
+  border: 1px solid transparent;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border-strong);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--fill);
+  border-color: #4a4a4a;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid transparent;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--accent-soft);
+}
+
+.segmented {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--radius);
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+}
+
+.segmented-item {
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.segmented-item:hover {
+  color: var(--foreground);
+}
+
+.segmented-item.is-active,
+.segmented-item[aria-pressed="true"],
+.segmented-item[aria-current="page"],
+.segmented-item[aria-selected="true"] {
+  background: var(--surface-raised);
+  color: var(--foreground);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+.field {
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-muted);
+  padding: 0.5rem 0.7rem;
+  font-size: 0.8125rem;
+  color: var(--foreground);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--accent-deep);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.field option {
+  background: #1a1a1a;
+  color: #ececec;
+}
+
+.pressable {
+  transition: background-color 120ms ease, opacity 120ms ease;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+code,
+.font-mono {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }

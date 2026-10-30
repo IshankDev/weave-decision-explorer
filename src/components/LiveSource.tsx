@@ -101,27 +101,28 @@ export function LiveSource() {
   const loading = state.status === "loading" && state.source.kind === "live";
 
   return (
-    <section id="source-live" className="space-y-3 rounded-lg bg-surface p-4 ring-1 ring-border">
-      <h2 className="text-lg font-semibold">Live (read-only)</h2>
-      <p className="text-sm text-muted">
-        Paste an <code className="font-mono">ra_</code> analytics key. It stays in this
-        browser session only — never localStorage, cookies, or the URL. Requests go through
-        a stateless proxy because the hosted router has no CORS allow-origin.
+    <section id="source-live" className="panel space-y-3 p-4">
+      <h2 className="section-title">Live (read-only)</h2>
+      <p className="text-[13px] text-muted">
+        Paste an <code className="font-mono text-muted-strong">ra_</code> analytics key. It
+        stays in this browser session only — never localStorage, cookies, or the URL.
+        Requests go through a stateless proxy because the hosted router has no CORS
+        allow-origin.
       </p>
 
       <div className="grid gap-3 sm:grid-cols-2">
-        <label className="flex flex-col gap-1 text-xs font-medium text-muted">
+        <label className="flex flex-col gap-1.5 text-[12px] font-medium text-muted">
           Router URL
           <input
             type="url"
             value={routerUrl}
             onChange={(e) => setRouterUrl(e.target.value)}
-            className="rounded-md border border-border bg-background px-2 py-1.5 text-sm text-foreground"
+            className="field"
             placeholder="https://router.workweave.ai"
             autoComplete="off"
           />
         </label>
-        <label className="flex flex-col gap-1 text-xs font-medium text-muted">
+        <label className="flex flex-col gap-1.5 text-[12px] font-medium text-muted">
           Analytics key (ra_)
           <input
             type="password"
@@ -130,25 +131,25 @@ export function LiveSource() {
               setKeyInput(e.target.value);
               setKeyError(null);
             }}
-            className="rounded-md border border-border bg-background px-2 py-1.5 font-mono text-sm text-foreground"
+            className="field font-mono"
             placeholder="ra_…"
             autoComplete="off"
             spellCheck={false}
           />
         </label>
-        <label className="flex flex-col gap-1 text-xs font-medium text-muted">
+        <label className="flex flex-col gap-1.5 text-[12px] font-medium text-muted">
           Since
           <input
             type="datetime-local"
             value={since}
             onChange={(e) => setSince(e.target.value)}
-            className="rounded-md border border-border bg-background px-2 py-1.5 text-sm text-foreground"
+            className="field"
           />
         </label>
       </div>
 
       {keyError && (
-        <p className="text-sm text-danger" role="alert">
+        <p className="text-[13px] text-danger" role="alert">
           {keyError}
         </p>
       )}
@@ -158,30 +159,22 @@ export function LiveSource() {
           type="button"
           disabled={loading}
           onClick={() => void startFetch()}
-          className="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white hover:opacity-90 disabled:opacity-50"
+          className="btn btn-primary"
         >
           {loading ? "Fetching…" : "Fetch decisions"}
         </button>
         {loading && (
-          <button
-            type="button"
-            onClick={stopFetch}
-            className="rounded-md px-3 py-1.5 text-sm font-medium ring-1 ring-border hover:bg-surface-muted"
-          >
+          <button type="button" onClick={stopFetch} className="btn btn-secondary">
             Stop
           </button>
         )}
-        <button
-          type="button"
-          onClick={forgetKey}
-          className="rounded-md px-3 py-1.5 text-sm font-medium ring-1 ring-border hover:bg-surface-muted"
-        >
+        <button type="button" onClick={forgetKey} className="btn btn-secondary">
           Forget key
         </button>
       </div>
 
       {state.live && state.source.kind === "live" && (
-        <p className="text-sm text-muted" role="status">
+        <p className="text-[13px] text-muted" role="status">
           Page {state.live.pages}/{MAX_LIVE_PAGES} · {state.live.rows.toLocaleString()} rows
           {state.live.waitingRetryAfter != null
             ? ` · rate limited, retrying in ${state.live.waitingRetryAfter}s`
@@ -190,7 +183,7 @@ export function LiveSource() {
         </p>
       )}
       {state.status === "error" && state.source.kind === "live" && state.error && (
-        <p className="text-sm text-danger" role="alert">
+        <p className="text-[13px] text-danger" role="alert">
           {state.error}
         </p>
       )}

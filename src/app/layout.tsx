@@ -33,21 +33,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
       >
         <StoreProvider>
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-3 focus:py-2 focus:text-white"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-3 focus:py-2 focus:text-background"
           >
             Skip to content
           </a>
           <Header />
           <main
             id="main-content"
-            className="mx-auto w-full max-w-7xl flex-1 px-4 py-6"
+            className="mx-auto w-full max-w-6xl flex-1 px-4 py-7 sm:px-6"
           >
             {children}
           </main>

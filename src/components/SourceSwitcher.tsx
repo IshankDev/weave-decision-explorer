@@ -27,43 +27,36 @@ export function SourceSwitcher() {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Data source">
-      <span className="text-sm text-muted">Source:</span>
-      {OPTIONS.map((opt) => {
-        const active = state.source.kind === opt.kind;
-        if (opt.kind === "demo") {
+    <div className="flex flex-wrap items-center gap-3" role="group" aria-label="Data source">
+      <div className="segmented">
+        {OPTIONS.map((opt) => {
+          const active = state.source.kind === opt.kind;
+          if (opt.kind === "demo") {
+            return (
+              <button
+                key={opt.kind}
+                type="button"
+                onClick={() => void loadDemo()}
+                className={`segmented-item ${active ? "is-active" : ""}`}
+                aria-pressed={active}
+              >
+                {opt.label}
+              </button>
+            );
+          }
           return (
-            <button
+            <a
               key={opt.kind}
-              type="button"
-              onClick={() => void loadDemo()}
-              className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
-                active
-                  ? "bg-accent text-white"
-                  : "bg-surface text-foreground ring-1 ring-border hover:bg-surface-muted"
-              }`}
-              aria-pressed={active}
+              href={opt.href}
+              className={`segmented-item ${active ? "is-active" : ""}`}
             >
               {opt.label}
-            </button>
+            </a>
           );
-        }
-        return (
-          <a
-            key={opt.kind}
-            href={opt.href}
-            className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
-              active
-                ? "bg-accent text-white"
-                : "bg-surface text-foreground ring-1 ring-border hover:bg-surface-muted"
-            }`}
-          >
-            {opt.label}
-          </a>
-        );
-      })}
+        })}
+      </div>
       {state.status === "ready" && (
-        <span className="text-sm text-muted">
+        <span className="text-[12px] text-muted">
           {state.source.rowCount.toLocaleString()} rows
           {state.source.skippedLines > 0
             ? ` · ${state.source.skippedLines} lines skipped`
